@@ -1,0 +1,237 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Table Style</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
+
+
+	
+</head>
+<body>
+<div class="table-title">
+<h3>{{username}}</h3>
+
+
+{%if loged = 't'%}
+<button id="myBtn" >Add Expense</button>
+<div id="myModal" class="modal">
+
+
+  <!-- Modal content -->
+  <div class="modal-content">
+  	<span class="close">×</span>
+    <div> 
+    <object type="text/html" data="/add_expense" width="200px" height="200px" style="overflow:auto; ridge blue">
+    </object></div>
+
+  </div>
+
+</div>
+
+{%endif%}
+
+
+</div>
+<table class="table-fill">
+<thead>
+<tr>
+<th class="text-left">Date</th>
+<th class="text-left">User</th>
+<th class="text-left">Description</th>
+<th class="text-left">Amount</th>
+</tr>
+</thead>
+<tbody class="table-hover">
+{%for e in expense%}
+<tr>
+<td class="text-left">{{e.date}}</td>
+<td class="text-left">{{e.user}}</td>
+<td class="text-left">{{e.description}}</td>
+<td class="text-left">{{e.amount}}</td> 
+{%endfor%}
+</tr>
+<tr>
+<td></td>
+<td>Total</td>
+<td>{{total}}</td>
+</tr>
+
+</tbody>
+</table>
+  
+<!--div> 
+    <object type="text/html" data="/chart/" width="100%" height="600px" style="overflow:auto;border:5px ridge blue">
+    </object></div-->
+
+
+<button id="linebtn">Day chart</button>
+<div id="chart" class="modal">
+
+  <!-- Modal content -->
+  <div class="chart-content">
+  	<span class="close">×</span>
+
+    <div> 
+    <object type="text/html" data="/chart/" width="100%" height="100%" style="overflow:auto; ridge blue">
+    </object></div>
+
+  </div>
+
+</div>
+
+<button id="barbtn">Month chart</button>
+<div id="bar" class="modal">
+
+  <!-- Modal content -->
+  <div class="chart-content">
+  	<span class="close">×</span>
+
+    <div> 
+    <object type="text/html" data="/month_chart" width="100%" height="100%" style="overflow:auto; ridge blue">
+    </object></div>
+
+  </div>
+
+</div>
+
+<button id="intvBtn" >Show Individual Expense</button>
+<div id="intv" class="modal">
+
+
+  <!-- Modal content -->
+  <div class="modal-content1">
+  	<span class="close">×</span>
+    <div> 
+    <object type="text/html" data="/individual_expense" width="100%" height="100%" style="overflow:auto; ridge blue">
+    </object></div>
+
+  </div>
+
+</div>
+
+
+<script>
+var index = 0;
+{%if loged = 't' %}
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[index];
+index = index+1;
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+{% endif %}
+
+
+var chart = document.getElementById('chart');
+
+// Get the button that opens the modal
+var linebtn = document.getElementById("linebtn");
+
+// Get the <span> element that closes the modal
+var span1 = document.getElementsByClassName("close")[index];
+index = index+1;
+
+// When the user clicks the button, open the modal 
+linebtn.onclick = function() {
+    chart.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span1.onclick = function() {
+    chart.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == chart) {
+        chart.style.display = "none";
+    }
+}
+
+
+
+var bar = document.getElementById('bar');
+
+// Get the button that opens the modal
+var barbtn = document.getElementById("barbtn");
+
+// Get the <span> element that closes the modal
+
+var span2 = document.getElementsByClassName("close")[index];
+index = index+1;
+
+
+// When the user clicks the button, open the modal 
+barbtn.onclick = function() {
+    bar.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span2.onclick = function() {
+    bar.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == bar) {
+        bar.style.display = "none";
+    }
+}
+
+
+var intv = document.getElementById('intv');
+
+// Get the button that opens the modal
+var intvbtn = document.getElementById("intvBtn");
+
+// Get the <span> element that closes the modal
+var span2 = document.getElementsByClassName("close")[index];
+index = index+1;
+
+// When the user clicks the button, open the modal 
+intvbtn.onclick = function() {
+    intv.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span2.onclick = function() {
+    intv.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == intv) {
+        intv.style.display = "none";
+    }
+}
+</script>
+  </body>
+
+
+
+
+
+

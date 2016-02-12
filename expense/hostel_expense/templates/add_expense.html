@@ -1,0 +1,8 @@
+<form method="POST" action="/add_expense">
+	{% csrf_token %}
+	<input type="date" name="date">
+	<input type="textfield" name="description">
+	<input type="text" name="amount">
+	{{message}}
+	<input type="Submit" value="Add">
+</form>
