@@ -123,10 +123,75 @@
 
 }
 
+#month_select {
+    position: relative;
+    width: 200px;
+    margin: 0 auto;
+    padding: 10px;
+    background: #fff;
+    border-radius: 7px;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+    color: #8AA8BD;
+}
+#submit_button{
+	height: 35px;
+	border : solid 1px #e6e6e6;
+	border-radius : 3px;
+	moz-border-radius : 3px;
+	-webkit-box-shadow : 0px 0px 2px rgba(0,0,0,1.0);
+	-moz-box-shadow : 0px 0px 2px rgba(0,0,0,1.0);
+	box-shadow : 0px 0px 2px rgba(0,0,0,1.0);
+	font-size : 20px;
+	color : #696869;
+	padding : 1px 17px;
+	background : #ffffff;
+	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(49%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6));
+	background : -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 49%, #e1e1e1 51%, #f6f6f6 100%);
+	background : -webkit-linear-gradient(top, #ffffff 0%, #f1f1f1 49%, #e1e1e1 51%, #f6f6f6 100%);
+	background : -o-linear-gradient(top, #ffffff 0%, #f1f1f1 49%, #e1e1e1 51%, #f6f6f6 100%);
+	background : -ms-linear-gradient(top, #ffffff 0%, #f1f1f1 49%, #e1e1e1 51%, #f6f6f6 100%);
+	background : linear-gradient(top, #ffffff 0%, #f1f1f1 49%, #e1e1e1 51%, #f6f6f6 100%);
+	filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 );
+
+}
+
 </style>
 <body>
+
+<form action="" method="POST" >
+	{% csrf_token %}
+	<select name="month" id="month_select">
+
+  <option value="1" >JAN</option>
+  <option value="2"  >FEB</option>
+  <option value="3" >MAR</option>
+  <option value="4" >APR</option>
+  <option value="5" >MAY</option>
+  <option value="6" >JUNE</option>
+  <option value="7" >JULY</option>
+  <option value="8" >AUG</option>
+  <option value="9" >SEP</option>
+  <option value="10">OCT</option>
+  <option value="11" >NOV</option>
+  <option value="12" >DEC</option>
+
+
+</select>
+<select name="year" id="month_select">
+  <option value="2016">2016</option>
+
+
+</select>
+	<input type="submit" value="Submit" id="submit_button">
+</form>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
+document.getElementById('month_select').selectedIndex={{month}}-1;
+
 
 var width = 960,
     height = 500,

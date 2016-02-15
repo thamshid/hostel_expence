@@ -47,7 +47,7 @@ def chart(request):
 			k['date'] = str(e.date.strftime("%Y-%m-%d "))
 			k['close'] = int(e.amount)
 			data.append(k)
-	return render(request, 'chart.html', {'data': data,"month":month})
+	return render(request, 'chart.html', {'data': data, "month":month})
 
 
 def month_chart(request):
@@ -114,19 +114,20 @@ def add_expense(request):
 		return render(request, 'add_expense.html', {})
 
 def individual_expense(request):
+	month = request.POST.get('month',datetime.datetime.now().month)
+	year = request.POST.get('year',datetime.datetime.now().year)
 	users = User.objects.all()
 	expense_list = []
 	for user in users:
 		total = 0
-		expense = Expense.objects.filter(user=user)
-		print expense
+		expense = Expense.objects.filter(user=user, date__month=month, date__year=year)
 		for e in expense:
 			total += int(e.amount)
 		ppp = {}
 		ppp['user'] = user.username
 		ppp['amount'] = total
 		expense_list.append(ppp)
-	return render(request, 'show_individual.html', {"expense_list":expense_list})
+	return render(request, 'show_individual.html', {"expense_list":expense_list, "month":month})
 
 def logout(request):
 	try:
