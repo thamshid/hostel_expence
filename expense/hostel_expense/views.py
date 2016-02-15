@@ -128,7 +128,12 @@ def individual_expense(request):
 		expense_list.append(ppp)
 	return render(request, 'show_individual.html', {"expense_list":expense_list})
 
-
+def logout(request):
+	try:
+		del request.session['user']
+		return HttpResponseRedirect('/')
+	except:
+		return HttpResponseRedirect('/')
 
 
 

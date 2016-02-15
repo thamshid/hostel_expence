@@ -10,6 +10,7 @@ urlpatterns = patterns(
     url(r'^authenticate$', views.authenticate, name="authenticate"),
     url(r'^add_expense$', views.add_expense, name="add_expense"),
     url(r'^individual_expense$', views.individual_expense, name="individual_expense"),
+    url(r'^logout$', views.logout, name="logout"),
    
 
 
