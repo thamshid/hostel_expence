@@ -60,22 +60,24 @@ body {
 
 </style>
 <body>
-<form action="/chart/" method="POST">
+
+<form action="/chart/" method="POST" >
 	{% csrf_token %}
 	<select name="month" id="month_select">
 
-  <option value="1" {% if month == '1' %} selected {% endif %}>JAN</option>
-  <option value="2" {% if month == '2' %} selected {% endif %} >FEB</option>
-  <option value="3" {% if month == '3' %} selected {% endif %}>MAR</option>
-  <option value="4" {% if month == '4' %} selected {% endif %}>APR</option>
-  <option value="5" {% if month == '5' %} selected {% endif %}>MAY</option>
-  <option value="6" {% if month == '6' %} selected {% endif %}>JUNE</option>
-  <option value="7" {% if month == '7' %} selected {% endif %}>JULY</option>
-  <option value="8" {% if month == '8' %} selected {% endif %}>AUG</option>
-  <option value="9" {% if month == '9' %} selected {% endif %}>SEP</option>
-  <option value="10" {% if month == '10' %} selected {% endif %}>OCT</option>
-  <option value="11" {% if month == '11' %} selected {% endif %}>NOV</option>
-  <option value="12" {% if month == '12' %} selected {% endif %}>DEC</option>
+  <option value="1" >JAN</option>
+  <option value="2"  >FEB</option>
+  <option value="3" >MAR</option>
+  <option value="4" >APR</option>
+  <option value="5" >MAY</option>
+  <option value="6" >JUNE</option>
+  <option value="7" >JULY</option>
+  <option value="8" >AUG</option>
+  <option value="9" >SEP</option>
+  <option value="10">OCT</option>
+  <option value="11" >NOV</option>
+  <option value="12" >DEC</option>
+
 
 </select>
 <select name="year" id="month_select">
@@ -87,6 +89,8 @@ body {
 </form>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
+
+document.getElementById('month_select').selectedIndex={{month}}-1;
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,

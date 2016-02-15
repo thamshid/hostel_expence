@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>Table Style</title>
+	<title> ExPeNsE........</title>
 	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
 
 	<link rel="stylesheet" type="text/css" href="/static/style.css">
@@ -34,6 +34,32 @@
 
 
 </div>
+<form action="" method="POST" style=" margin-left: auto; margin-right: auto; width: 45%;">
+	{% csrf_token %}
+	<select name="month" id="month_select">
+
+  <option value="1" >JAN</option>
+  <option value="2"  >FEB</option>
+  <option value="3" >MAR</option>
+  <option value="4" >APR</option>
+  <option value="5" >MAY</option>
+  <option value="6" >JUNE</option>
+  <option value="7" >JULY</option>
+  <option value="8" >AUG</option>
+  <option value="9" >SEP</option>
+  <option value="10">OCT</option>
+  <option value="11" >NOV</option>
+  <option value="12" >DEC</option>
+
+
+</select>
+<select name="year" id="month_select">
+  <option value="2016">2016</option>
+
+
+</select>
+	<input type="submit" value="Submit" id="submit_button">
+</form>
 <table class="table-fill">
 <thead>
 <tr>
@@ -113,6 +139,7 @@
 
 
 <script>
+document.getElementById('month_select').selectedIndex={{month}}-1;
 var index = 0;
 {%if loged = 't' %}
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from hostel_expense.models import *
 import simplejson
 import datetime
@@ -8,12 +8,14 @@ from decorator import check_login
 # Create your views here.
 
 def index(request):
+	month = request.POST.get('month',datetime.datetime.now().month)
+	year = request.POST.get('year',datetime.datetime.now().year)
 	loged = 'f'
 	username = ''
 	if request.session.has_key('user'):
 		username = request.session['user']
 		loged = 't'
-	expense = Expense.objects.all().order_by('-date')
+	expense = Expense.objects.filter(date__month=month, date__year=year).order_by('-date')
 	total = 0
 	for e  in expense:
 		total += float(e.amount)
@@ -26,7 +28,7 @@ def index(request):
 		ep['description'] = e.description
 		exp.append(ep)
 
-	return render(request, 'index.html', {"expense":exp, "total":total, "loged":loged, "username":username})
+	return render(request, 'index.html', {"expense":exp, "total":total, "loged":loged, "username":username,"month":month})
 
 def chart(request):
 	month = request.POST.get('month',datetime.datetime.now().month)
@@ -89,7 +91,7 @@ def authenticate(request):
 			ep['date'] = e.date
 			ep['description'] = e.description
 			exp.append(ep)
-		return render(request, 'index.html', {"expense":exp, "total":total,"loged":"t", "username":username})
+		return HttpResponseRedirect('/')
 	except:
 		return render(request, 'login.html', {"error":"Username or password not match"})
 
