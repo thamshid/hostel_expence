@@ -96,22 +96,25 @@ def authenticate(request):
 		return render(request, 'login.html', {"error":"Username or password not match"})
 
 def add_expense(request):
-	if request.method == 'POST':
-		username = request.session['user']
-		date = request.POST['date']
-		description = request.POST['description']
-		amount = request.POST['amount']
-		user = User.objects.get(username=username)
-		date = datetime.datetime.strptime(date, "%Y-%m-%d")
-		expense = Expense()
-		expense.user = user
-		expense.date = date
-		expense.description = description
-		expense.amount = amount
-		expense.save()
-		return render(request, 'add_expense.html', {"message":"Expense added..."})
-	else:
-		return render(request, 'add_expense.html', {})
+	try:
+		if request.method == 'POST':
+			username = request.session['user']
+			date = request.POST['date']
+			description = request.POST['description']
+			amount = float(request.POST['amount'])
+			user = User.objects.get(username=username)
+			date = datetime.datetime.strptime(date, "%Y-%m-%d")
+			expense = Expense()
+			expense.user = user
+			expense.date = date
+			expense.description = description
+			expense.amount = amount
+			expense.save()
+			return render(request, 'add_expense.html', {"message":"Expense added..."})
+		else:
+			return render(request, 'add_expense.html', {})
+	except:
+		return render(request, 'add_expense.html', {"message":"Please fill all field correctly..."})
 
 def individual_expense(request):
 	month = request.POST.get('month',datetime.datetime.now().month)
